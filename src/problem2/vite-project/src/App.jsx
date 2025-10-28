@@ -142,7 +142,28 @@ function App() {
               min="0"
               step="any"
               value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              onChange={(e) => {
+                const v = e.target.value
+                // treat empty or null as 0
+                if (v === '' || v == null) {
+                  setAmount('0')
+                  return
+                }
+                const n = Number(v)
+                // if not a number or negative, clamp to 0
+                if (Number.isNaN(n) || n < 0) {
+                  setAmount('0')
+                  return
+                }
+                // keep the entered value
+                setAmount(String(v))
+              }}
+              onBlur={() => {
+                // final safety: ensure amount is a valid non-negative number
+                if (amount === '' || Number.isNaN(Number(amount)) || Number(amount) < 0) {
+                  setAmount('0')
+                }
+              }}
               style={{ marginTop: 6, padding: 8, fontSize: 16 }}
             />
           </label>
