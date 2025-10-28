@@ -148,7 +148,27 @@ function App() {
           </label>
 
           <div style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
-            <div style={{ fontSize: 14, color: "white" }}>Destination token</div>
+            <div style={{ gap: 8, fontSize: 14, color: 'white' }}>
+              {/* {token ? (
+                <img
+                  src={iconFor(token)}
+                  alt={token}
+                  crossOrigin="anonymous"
+                  style={{ width: 18, height: 18, objectFit: 'contain' }}
+                  onError={(e) => {
+                    const cur = e.currentTarget
+                    if (!cur.dataset.triedLower) {
+                      cur.dataset.triedLower = '1'
+                      cur.onerror = null
+                      cur.src = iconFor(token.toLowerCase(), 'svg')
+                      return
+                    }
+                    cur.style.display = 'none'
+                  }}
+                />
+              ) : null} */}
+              <span>Destination token</span>
+            </div>
             <button
               type="button"
               onClick={() => setOpen((s) => !s)}
@@ -174,7 +194,7 @@ function App() {
                     crossOrigin="anonymous"
                     style={{ width: 20, height: 20, objectFit: 'contain' }}
                     onError={(e) => {
-                      // try lowercase svg once, then stop trying and hide to prevent repeated 404s
+                      // try lowercase svg once, then stop trying and hide
                       const cur = e.currentTarget
                       if (!cur.dataset.triedLower) {
                         cur.dataset.triedLower = '1'
